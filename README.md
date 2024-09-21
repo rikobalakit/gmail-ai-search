@@ -59,7 +59,7 @@ Database: I've used MySQL. I've used SQLite. I haven't used PostgreSQL. MongoDB 
 I begrudgingly went with PostgreSQL. I guess it's another thing to add to my resume. I don't even know why I'm upset about it (it's my choice after all).
 
 Mail API: I only use Gmail, so I can only use Gmail for this.
-- GMail: I already use this
+- Gmail: I already use this
 
 Easy. We're going with GMail.
 
