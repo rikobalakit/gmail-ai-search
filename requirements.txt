@@ -2,3 +2,4 @@ psycopg2-binary # for PostgreSQL
 google-api-python-client #google api for python
 google-auth-httplib2 #google http auth lib
 google-auth-oauthlib #google oauth lib
+humanize

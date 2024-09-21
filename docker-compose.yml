@@ -11,8 +11,12 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: gmail_db
+      DB_HOST: db
     networks:
       - app-network
+    command: dockerize -wait tcp://db:5432 -timeout 60s python gmail_fetch.py  # Wait for PostgreSQL
+    ports:
+      - "5000:5000"  # For Flask, when you add it later
 
   db:
     image: postgres:13
@@ -24,6 +28,7 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # This mounts the init.sql file
     networks:
       - app-network
 
