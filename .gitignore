@@ -1,7 +1,8 @@
 # Ignore sensitive config files
 config/*.py
 !config/config.example.py
-!config/readme.txt 
+!config/readme.md
+!config/readme.txt
 config/credentials.json
 
 # Ignore VSCode-specific files
