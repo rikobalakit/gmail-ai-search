@@ -4,6 +4,7 @@ config/*.py
 !config/readme.md
 !config/readme.txt
 config/credentials.json
+token.json
 
 # Ignore VSCode-specific files
 .vscode/

@@ -16,5 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the app code into the container
 COPY . .
 
+RUN python -c "from sentence_transformers import CrossEncoder; CrossEncoder('cross-encoder/ms-marco-MiniLM-L-12-v2')"
+
 # Run the app
 CMD ["dockerize", "-wait", "tcp://db:5432", "-timeout", "60s", "python", "gmail_fetch.py"]

@@ -1,10 +1,9 @@
-version: '3'
-
 services:
   app:
     build: .
     volumes:
       - .:/usr/src/app
+      - huggingface_cache:/root/.cache/huggingface  # Persist Hugging Face cache
     depends_on:
       - db
     environment:
@@ -14,9 +13,48 @@ services:
       DB_HOST: db
     networks:
       - app-network
-    command: dockerize -wait tcp://db:5432 -timeout 60s python gmail_fetch.py  # Wait for PostgreSQL
+    command: dockerize -wait tcp://db:5432 -timeout 60s python analyze.py  # Wait for PostgreSQL
     ports:
       - "5000:5000"  # For Flask, when you add it later
+
+  fetcher:
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - huggingface_cache:/root/.cache/huggingface  # Persist Hugging Face cache
+    depends_on:
+      - db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: gmail_db
+      DB_HOST: db
+    networks:
+      - app-network
+    command: dockerize -wait tcp://db:5432 -timeout 60s # Wait for PostgreSQL
+    entrypoint: ["python", "gmail_fetch.py"]
+    ports:
+      - "5000:5000"  # For Flask, when you add it later
+
+  analyzer:
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - huggingface_cache:/root/.cache/huggingface  # Persist Hugging Face cache
+    depends_on:
+      - db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: gmail_db
+      DB_HOST: db
+    networks:
+      - app-network
+    command: dockerize -wait tcp://db:5432 -timeout 60s # Wait for PostgreSQL
+    entrypoint: ["python", "analyze.py"]
+    ports:
+      - "5000:5000"  # For Flask, when you add it later
+
 
   db:
     image: postgres:13
@@ -34,6 +72,7 @@ services:
 
 volumes:
   pgdata:
+  huggingface_cache:
 
 networks:
   app-network:
