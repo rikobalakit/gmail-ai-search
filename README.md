@@ -25,7 +25,7 @@ Here is the overall high level stack:
  - Flask, eventually, for the web server
  - PostgreSQL for the database
  - Google Mail API
- - No idea which AI model/library/whatever I'll be using yet, I'm trying to hello-world this and the Gmail API first.
+ - Huggingface Transformer
 
 # Why I picked this stack
 
@@ -63,4 +63,7 @@ Mail API: I only use Gmail, so I can only use Gmail for this.
 
 Easy. We're going with GMail.
 
-AI/ML Model: I'll cross that bridge when we get there, let's hello world this.
+AI/ML Model: I have zero idea about this, so I asked ChatGPT for some suggestions.
+- Huggingface Transformers: I went with this at first. Starting with sentence-transformers Cross Encoder. Not sure if it's it though.
+- spaCy: apparently its pretty powerful too for whatever NLP is
+- scikit-learn: I'm too tired to understand this stuff, I've been coding this for 10hr straight after waking up in the middle of the night ill finish this doc later
