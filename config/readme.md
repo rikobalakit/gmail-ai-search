@@ -1,6 +1,6 @@
 Add "Credentials.json" in this folder. You can get this from the Google Cloud APIs & Services page.
 
-#Instructions for getting credentials.json (via ChatGPT)
+# Instructions for getting credentials.json (via ChatGPT)
 
 The **`credentials.json`** file is essentially the **OAuth 2.0 client secrets file**, which is generated when you create your **OAuth 2.0 credentials** in the Google Cloud Console. It contains the **client ID** and **client secret** that your app needs to authenticate with the Gmail API.
 
